@@ -1,26 +1,182 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Cores principais Sicoob */
+  --sicoob-turquesa: #00AE9D;
+  --sicoob-verde-escuro: #003641;
+  --sicoob-branco: #FFFFFF;
+  
+  /* Cores de apoio Sicoob */
+  --sicoob-verde-claro: #C9D200;
+  --sicoob-verde-medio: #7DB61C;
+  --sicoob-roxo: #49479D;
+  
+  /* Cores complementares para UI */
+  --sicoob-cinza-claro: #F5F5F5;
+  --sicoob-cinza-medio: #E5E5E5;
+  --sicoob-cinza-escuro: #404040;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-gray-200;
+  }
+  
+  body {
+    @apply bg-gray-50 text-gray-900;
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .sicoob-primary {
+    @apply bg-sicoob-turquesa hover:bg-sicoob-turquesa-dark text-white;
+  }
+  
+  .sicoob-secondary {
+    @apply bg-sicoob-verde-medio hover:bg-sicoob-verde-medio-light text-white;
+  }
+  
+  .sicoob-accent {
+    @apply bg-sicoob-verde-claro hover:bg-sicoob-verde-claro text-sicoob-verde-escuro;
+  }
+  
+  .sicoob-outline {
+    @apply border-2 border-sicoob-turquesa text-sicoob-turquesa hover:bg-sicoob-turquesa hover:text-white;
+  }
 }
+
+/* Customizações específicas para o formulário */
+.form-section {
+  @apply bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6;
+}
+
+.form-grid {
+  @apply grid gap-4;
+}
+
+.form-grid-1 {
+  @apply grid-cols-1;
+}
+
+.form-grid-2 {
+  @apply grid-cols-1 md:grid-cols-2;
+}
+
+.form-grid-3 {
+  @apply grid-cols-1 md:grid-cols-2 lg:grid-cols-3;
+}
+
+.form-grid-4 {
+  @apply grid-cols-1 md:grid-cols-2 lg:grid-cols-4;
+}
+
+/* Estilos para inputs com erro */
+.input-error {
+  @apply border-red-500 focus:ring-red-500 focus:border-red-500;
+}
+
+/* Estilos para mensagens */
+.message-success {
+  @apply bg-green-50 border-green-200 text-green-800;
+}
+
+.message-error {
+  @apply bg-red-50 border-red-200 text-red-800;
+}
+
+.message-warning {
+  @apply bg-yellow-50 border-yellow-200 text-yellow-800;
+}
+
+.message-info {
+  @apply bg-blue-50 border-blue-200 text-blue-800;
+}
+
+/* Animações suaves */
+.transition-smooth {
+  @apply transition-all duration-200 ease-in-out;
+}
+
+/* Estilos para upload de arquivos */
+.file-upload-area {
+  @apply border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-teal-500 transition-colors cursor-pointer;
+}
+
+.file-upload-area:hover {
+  @apply bg-gray-50;
+}
+
+/* Estilos para preview de imagens */
+.image-preview {
+  @apply w-16 h-16 object-cover rounded-lg border border-gray-200;
+}
+
+/* Responsividade para mobile */
+@media (max-width: 768px) {
+  .form-grid-mobile {
+    @apply grid-cols-1 gap-3;
+  }
+  
+  .form-section {
+    @apply p-4 mb-4;
+  }
+  
+  .form-header {
+    @apply px-4 py-3;
+  }
+  
+  .form-actions {
+    @apply flex-col space-y-3;
+  }
+}
+
+/* Estilos para checkboxes customizados com cores Sicoob */
+.checkbox-sicoob {
+  @apply rounded border-gray-300 text-sicoob-turquesa focus:ring-sicoob-turquesa focus:ring-offset-0;
+}
+
+/* Estilos para botões com cores Sicoob */
+.btn-primary {
+  @apply px-6 py-3 bg-sicoob-turquesa text-white rounded-md hover:bg-sicoob-turquesa-dark disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium;
+}
+
+.btn-secondary {
+  @apply px-6 py-3 bg-sicoob-verde-medio text-white rounded-md hover:bg-sicoob-verde-medio-light disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium;
+}
+
+.btn-accent {
+  @apply px-6 py-3 bg-sicoob-verde-claro text-sicoob-verde-escuro rounded-md hover:bg-sicoob-verde-claro disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium;
+}
+
+.btn-outline {
+  @apply px-6 py-3 border-2 border-sicoob-turquesa text-sicoob-turquesa rounded-md hover:bg-sicoob-turquesa hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium;
+}
+
+.btn-danger {
+  @apply px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium text-sm;
+}
+
+/* Estilos para loading */
+.loading-spinner {
+  @apply animate-spin rounded-full h-4 w-4 border-b-2 border-white;
+}
+
+/* Estilos para tooltips */
+.tooltip {
+  @apply absolute z-10 px-2 py-1 text-xs text-white bg-gray-900 rounded shadow-lg;
+}
+
+/* Print styles para PDF */
+@media print {
+  .no-print {
+    @apply hidden;
+  }
+  
+  .print-break {
+    page-break-before: always;
+  }
+}
+
