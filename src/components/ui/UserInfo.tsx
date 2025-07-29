@@ -10,7 +10,7 @@ interface UserInfoProps {
   className?: string;
   fields?: ('nome' | 'email' | 'cargo')[];
   formData?: FormData;
-  updateField?: (field: keyof FormData, value: any) => void;
+  updateField: (field: keyof FormData, value: any) => void;
   
 }
 

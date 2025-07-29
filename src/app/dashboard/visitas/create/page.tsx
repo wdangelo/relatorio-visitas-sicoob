@@ -121,7 +121,7 @@ return (
       title="Visitas"
       subtitle="Criação de Relatório de Visitas"
     >
-    <div className="min-h-screen ">
+    <div className="space-y-6">
       
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -130,8 +130,11 @@ return (
           <FormSection  title="1. Informações do Colaborador">
             <UserInfo 
               fields={['nome', 'cargo', 'email']} 
-              formData={formData}
-              updateField={updateField}
+                updateField={(field, value) => {
+                updateField(field, value);
+                handleFieldValidation(field, value);
+              }}
+
             />
 
           </FormSection>
